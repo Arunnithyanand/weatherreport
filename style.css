@@ -1,0 +1,43 @@
+
+
+.inpt{
+    margin-top: 25px;
+}
+.text{
+    display: flex;
+  
+}
+.rowd{
+    height: 330px;
+    width: 700px;
+    margin-left: 335px;
+}
+.coll{
+    display: flex;
+}
+.fst{
+    display: flex;
+}
+#place{
+    margin-left: 400px;
+}
+.cold{
+    background-color: white;
+    height: 150px;
+
+}
+.cols{
+    background-color: grey;
+    height: 150px;
+}
+.cold{
+    background-color: white;
+    height: 150px;
+}
+.cols{
+    background-color: grey;
+    height: 150px;
+}
+.we{
+    color:black
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API fetching</title>
+    <!-- CSS only -->
+    <script src="https://kit.fontawesome.com/d56d18e9db.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+    /* @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap'); */
+    button{
+    background-color:darkgray;
+    margin-top: 25px;
+    border-radius: 10%;
+    height: 50px;
+    border: none;
+    font-family: 'Courgette', cursive;
+    
+    }
+    h3{
+        font-family: 'Otomanopee One', sans-serif; 
+    }
+</style>
+    </head>
+
+<body style="background-color: gold;">
+    
+    
+    <div class=" mt-5">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <h3 class="text mt-5 "> <b> Simple Weather Widget </b> </h3>
+                <input class="inpt" type="text" placeholder="Enter City name" id="city">
+                <button  onclick="fetchWeather()">  Fetch Weather </button>
+                
+
+            </div>
+            <div class="col-4"></div>
+        </div>
+
+        <!-- display -->
+
+       <div class="rowd" style="background-color: seashell;">
+         <div class="col fst mt-5 p-5">
+          <i class="fas we fa-2x fa-cloud-sun-rain"> <b> Weather </b> </i>
+         <b> <p id="place"></p> </b>
+         </div>
+         <div class="col coll p-2">
+           <div class="col cold p-2"  >
+            <i style="color: red;" class="fas fa-2x fa-temperature-low"></i><br>
+            <b>Temperature </b>
+          <b> <p id="first"></p> </b>
+           </div>
+           <div class="col cols p-2" >
+            <i style="color:blue;"class="fas fa-2x fa-cloud-moon-rain"></i><br>
+            <b>Weather</b>
+          <b> <p id="second"></p> </b>
+           </div>
+           <div class="col cold p-2" >
+            <i style="color:red;"class="fas  fa-2x fa-tint"></i><br>
+            <b>Humidity</b>
+          <b> <p id="third"></p> </b>
+           </div>
+           <div class="col cols p-2">
+            <i style="color:blue;"class="fas fa-2x fa-wind"></i><br>
+            <b>Wind</b>
+          <b><p  id="fourth"></p></b>
+           </div>
+
+
+         </div>
+       </div>
+    </div>
+
+
+</body>
+<script>
+    function displayValues(city) {
+        
+        let name = city.list[0].name
+        let temperature = city.list[0].main.temp
+        let weather=city.list[0].weather[0].main
+        let humidity=city.list[0].main.humidity
+        let wind=city.list[0].wind.speed
+        console.log(name,temperature,weather,humidity,wind)
+       
+     
+      
+        place.innerHTML = `City: ${name}`
+         first.innerHTML=temperature
+         second.innerHTML=weather
+         third.innerHTML=humidity
+         fourth.innerHTML=wind
+
+    }
+
+    // function fetchCountry() {
+    //     let country_name = country.value
+    //     let url = `https://restcountries.eu/rest/v2/name/${country_name}?fullText=true`
+    //     let request = new XMLHttpRequest()
+    //     request.open("get", url)
+    //     request.send()
+    //     request.onreadystatechange = () => {
+    //         if (request.readyState == 4) {
+    //             if (request.status > 199 & request.status < 300) {
+    //                 let data = JSON.parse(request.responseText)
+    //                 console.log(data);
+    //                 displayValues(data)
+
+
+    //             }
+    //         }
+    //     }
+
+    // }
+    function fetchWeather(){
+        let city_name=city.value;
+        let api="c02c89f32e772d860482d03c6a51143c";
+        let url= `http://api.openweathermap.org/data/2.5/find?q=${city_name}&units=metric&appid=${api}`;
+        
+        fetch(url).then(res=>{
+            if(!(res.ok)){
+                throw new Error("Failed to fetch data")
+            }
+            else{
+                return res.json()
+            }
+        
+    }).then(data=>displayValues(data)).catch(error=>alert(error.message))
+
+
+
+    
+    }
+</script>
+
+</html>
