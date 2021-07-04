@@ -124,7 +124,7 @@
     function fetchWeather(){
         let city_name=city.value;
         let api="c02c89f32e772d860482d03c6a51143c";
-        let url= `http://api.openweathermap.org/data/2.5/find?q=${city_name}&units=metric&appid=${api}`;
+        let url= `https://api.openweathermap.org/data/2.5/find?q=${city_name}&units=metric&appid=${api}`;
         
         fetch(url).then(res=>{
             if(!(res.ok)){
